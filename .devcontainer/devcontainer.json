@@ -1,0 +1,61 @@
+{
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "GitHub.copilot",
+        "GitHub.copilot-chat",
+        "JakeBecker.elixir-ls",
+        "bradlc.vscode-tailwindcss",
+        "phoenixframework.phoenix"
+      ],
+      "settings": {
+        "editor": {
+          "defaultFormatter": "trunk.io",
+          "formatOnSave": true
+        },
+        "elixirLS": {
+          "suggestSpecs": false,
+          "dialyzerEnabled": true,
+          "signatureAfterComplete": false,
+          "fetchDeps": false
+        },
+        "emmet": {
+          "includeLanguages": {
+            "elixir": "html",
+            "phoenix-heex": "html"
+          },
+          "triggerExpansionOnTab": true
+        },
+        "files": {
+          "associations": {
+            "*.heex": "phoenix-heex"
+          }
+        },
+        "tailwindCSS.includeLanguages": {
+          "elixir": "html",
+          "phoenix-heex": "html"
+        }
+      }
+    }
+  },
+  "features": {
+    "ghcr.io/krzysztofwos/dev-container-features/flyctl:latest": {},
+    "ghcr.io/trunk-io/devcontainer-feature/trunk:latest": {}
+  },
+  "forwardPorts": [4000, 5432],
+  "postCreateCommand": "bash ./scripts/post-create.sh",
+  "postStartCommand": "bash ./scripts/post-start.sh",
+  "portsAttributes": {
+    "4000": {
+      "label": "Phoenix",
+      "onAutoForward": "notify"
+    },
+    "5432": {
+      "label": "Postgres"
+    }
+  },
+  "remoteUser": "vscode"
+}
